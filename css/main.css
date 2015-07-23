@@ -1,0 +1,19 @@
+body, html{
+    margin:0;
+    text-align:center;
+}
+
+#ascii {
+    font-family: monospace;
+    font-size: 6px;
+    line-height: 70%;
+}
+
+#container {
+    overflow: hidden;
+    display: inline-block;
+}
+
+#canvas, #video{
+    display:none;
+}
