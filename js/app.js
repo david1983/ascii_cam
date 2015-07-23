@@ -11,9 +11,15 @@ setInterval(function(){
 document.getElementById('setSize').addEventListener('click', function(){
     var w = document.getElementById('wValue').value
     var h = document.getElementById('hValue').value
+    var fontsize = document.getElementById('resolution').value;
+    fontsize = (fontsize>0) ? fontsize : 8;
+    w = (w>0) ? w : 80;
+    h = (h>0)  ? h : 60;
     window.h = h;
     window.w = w;
 
+    var ascii = document.getElementById("ascii");
+    ascii.style.fontSize = fontsize + 'px';
     var canvas = document.getElementById("canvas")
     canvas.width = w;
     canvas.height = h;
