@@ -8,6 +8,10 @@ setInterval(function(){
     convert_ascii();
 },100)
 
+window.h = 80;
+window.w = 40;
+window.fontsize = 4;
+
 document.getElementById('setSize').addEventListener('click', function(){
     var w = document.getElementById('wValue').value
     var h = document.getElementById('hValue').value
