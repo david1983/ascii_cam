@@ -1,7 +1,30 @@
 
 window.addEventListener("DOMContentLoaded", function() {
-    w = 160;
-    h = 120;
+
+    init(80,60)
+})
+
+setInterval(function(){
+    convert_ascii();
+},100)
+
+document.getElementById('setSize').addEventListener('click', function(){
+    var w = document.getElementById('wValue').value
+    var h = document.getElementById('hValue').value
+    window.h = h;
+    window.w = w;
+
+    var canvas = document.getElementById("canvas")
+    canvas.width = w;
+    canvas.height = h;
+})
+
+
+
+function init(w,h){
+
+    window.w = w
+    window.h = h
     var canvas = document.getElementById("canvas"),
         context = canvas.getContext("2d"),
         video = document.getElementById("video"),
@@ -29,20 +52,13 @@ window.addEventListener("DOMContentLoaded", function() {
             video.play();
         }, errBack);
     }
-}, false);
-
-
-setInterval(function(){
-    convert_ascii();
-},100)
-
-
+}
 
 function convert_ascii(){
     var canvas = document.getElementById("canvas"),
         tc = canvas.getContext("2d")
-    tc.drawImage(video, 0, 0, w, h);
-    var pixels = tc.getImageData(0, 0, w, h);
+    tc.drawImage(video, 0, 0, window.w, window.h);
+    var pixels = tc.getImageData(0, 0, window.w, window.h);
     var colordata = pixels.data;
 
     var ascii = document.getElementById("ascii");
@@ -74,7 +90,7 @@ function convert_ascii(){
         else character = "@"; //almost black
 
         //newlines and injection into dom
-        if(i != 0 && (i/4)%w == 0) //if the pointer reaches end of pixel-line
+        if(i != 0 && (i/4)%window.w == 0) //if the pointer reaches end of pixel-line
         {
             ascii.appendChild(document.createTextNode(line));
             //newline
