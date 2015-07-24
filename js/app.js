@@ -41,7 +41,7 @@ document.getElementById('configureBtn').addEventListener('click',function(){
 
 document.getElementById('settingBtn').addEventListener('click',function(){
     var settings = document.getElementById('settings');
-    settings.style.right = 20 + 'px';
+    settings.style.right = 50 + '%';
 })
 
 document.getElementById('snapBtn').addEventListener('click',function(){
