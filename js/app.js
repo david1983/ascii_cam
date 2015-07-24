@@ -39,6 +39,11 @@ document.getElementById('configureBtn').addEventListener('click',function(){
     settings.style.right = 20 + 'px';
 })
 
+document.getElementById('settingBtn').addEventListener('click',function(){
+    var settings = document.getElementById('settings');
+    settings.style.right = 20 + 'px';
+})
+
 document.getElementById('snapBtn').addEventListener('click',function(){
     var canvas = document.getElementById('snap');
     window.open(
