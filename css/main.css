@@ -94,6 +94,29 @@ body, html{
 }
 
 
+#settingBtn{
+    z-index: 3;
+    width:3.4em;
+    height:3.4em;
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    padding:1em;
+    font-size: 2em;
+    background: lightgray;
+    border:1px solid grey;
+    border-radius: 100%;
+    transition:all 0.3s;
+}
+
+#settingBtn:hover,
+#settingBtn:active{
+    transform: scale(1.1);
+    background: grey;
+    color:lightgray;
+}
+
+
 #snap{
     background: white;
     border:1px solid black;
