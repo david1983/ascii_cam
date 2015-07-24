@@ -8,6 +8,10 @@ setInterval(function(){
     convert_ascii();
 },100)
 
+window.h = 80;
+window.w = 40;
+window.fontsize = 4;
+
 document.getElementById('setSize').addEventListener('click', function(){
     var w = document.getElementById('wValue').value
     var h = document.getElementById('hValue').value
@@ -17,12 +21,37 @@ document.getElementById('setSize').addEventListener('click', function(){
     h = (h>0)  ? h : 60;
     window.h = h;
     window.w = w;
-
+    window.fontsize = fontsize;
     var ascii = document.getElementById("ascii");
     ascii.style.fontSize = fontsize + 'px';
     var canvas = document.getElementById("canvas")
     canvas.width = w;
     canvas.height = h;
+})
+
+document.getElementById('closeBtn').addEventListener('click',function(){
+    var settings = document.getElementById('settings');
+    settings.style.right = -300 + 'px';
+})
+
+document.getElementById('configureBtn').addEventListener('click',function(){
+    var settings = document.getElementById('settings');
+    settings.style.right = 20 + 'px';
+})
+
+document.getElementById('settingBtn').addEventListener('click',function(){
+    var settings = document.getElementById('settings');
+    settings.style.right = 40 + '%';
+})
+
+document.getElementById('snapBtn').addEventListener('click',function(){
+    var canvas = document.getElementById('snap');
+    window.open(
+        canvas.toDataURL("image/jpg"),
+        '_blank' // <- This is what makes it open in a new window.
+    );
+
+
 })
 
 
@@ -72,6 +101,17 @@ function convert_ascii(){
         ascii.removeChild(ascii.lastChild);
     }
     var line="";
+
+    var snapcanvas=document.getElementById('snap');
+    snapcanvas.width=(window.fontsize) ? window.w*window.fontsize : window.h;
+    snapcanvas.height=window.row || window.h*15;
+    var context = snapcanvas.getContext('2d');
+    context.clearRect(0, 0, snapcanvas.width, snapcanvas.height);
+    context.fillStyle = "black";
+    console.log(window.row)
+    var fontsize = 2;
+    context.font = "bold " + fontsize + "px monospace";
+    row=1
     for(var i = 0; i < colordata.length; i = i+4)
     {
         r = colordata[i];
@@ -98,13 +138,27 @@ function convert_ascii(){
         //newlines and injection into dom
         if(i != 0 && (i/4)%window.w == 0) //if the pointer reaches end of pixel-line
         {
-            ascii.appendChild(document.createTextNode(line));
+            //ascii.appendChild(document.createTextNode(line));
+            var metrics = context.measureText(line);
+            var testWidth = metrics.width;
+            while(testWidth<snapcanvas.width){
+
+                fontsize++;
+                context.font = "bold " + fontsize + "px monospace";
+                var metrics = context.measureText(line);
+                var testWidth = metrics.width;
+            }
+
+            context.fillText(line, 0, row);
+            row += fontsize;
+
             //newline
-            ascii.appendChild(document.createElement("br"));
+            //ascii.appendChild(document.createElement("br"));
             //emptying line for the next row of pixels.
             line = "";
         }
 
         line += character;
     }
+    window.row=row;
 }

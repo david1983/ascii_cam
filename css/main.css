@@ -1,19 +1,123 @@
 body, html{
+    overflow: hidden;
+    background: #9f9a93;
     margin:0;
     text-align:center;
 }
 
+.navbar{
+    position:fixed;
+    width: 100%;
+    z-index: 9;
+}
+
+.box{
+    z-index:0;
+    overflow: auto;
+    padding:2em;
+    position:fixed;
+    width:100%;
+    top:50px;
+    height:90%;
+}
+
 #ascii {
-    font-family: monospace;
+    display: none;
+    font-family: 'VT323';
     font-size: 6px;
     line-height: 70%;
 }
 
 #container {
-    overflow: hidden;
+
     display: inline-block;
 }
 
 #canvas, #video{
     display:none;
+}
+
+#closeBtn{
+    background: white;
+    position:absolute;
+    top:-13px;
+    right: -13px;
+    border:1px solid gray;
+    padding:5px;
+    border-radius: 100%;
+    transition: all 0.5s;
+}
+
+#closeBtn:hover,
+#closeBtn:active{
+    background: grey;
+    color:white;
+}
+
+#settings{
+    z-index: 10;
+    background: white;
+    padding:1em;
+    position:absolute;
+    width:200px;
+    border:1px solid grey;
+    top:100px;
+    right:-300px;
+    text-align: left;
+    transition:all 0.5s;
+}
+
+#settings input{
+    width: 100%;
+}
+
+#snapBtn{
+    z-index: 3;
+    width:3.4em;
+    height:3.4em;
+    position:fixed;
+    bottom:20px;
+    left:20px;
+    padding:1em;
+    font-size: 2em;
+    background: lightgray;
+    border:1px solid grey;
+    border-radius: 100%;
+    transition:all 0.3s;
+}
+
+#snapBtn:hover,
+#snapBtn:active{
+    transform: scale(1.1);
+    background: grey;
+    color:lightgray;
+}
+
+
+#settingBtn{
+    z-index: 3;
+    width:3.4em;
+    height:3.4em;
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    padding:1em;
+    font-size: 2em;
+    background: lightgray;
+    border:1px solid grey;
+    border-radius: 100%;
+    transition:all 0.3s;
+}
+
+#settingBtn:hover,
+#settingBtn:active{
+    transform: scale(1.1);
+    background: grey;
+    color:lightgray;
+}
+
+
+#snap{
+    background: white;
+    border:1px solid black;
 }
