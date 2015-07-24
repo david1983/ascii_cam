@@ -42,7 +42,7 @@ document.getElementById('configureBtn').addEventListener('click',function(){
 document.getElementById('snapBtn').addEventListener('click',function(){
     var canvas = document.getElementById('snap');
     window.open(
-        canvas.toDataURL("image/png"),
+        canvas.toDataURL("image/jpg"),
         '_blank' // <- This is what makes it open in a new window.
     );
 
