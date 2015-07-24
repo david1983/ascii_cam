@@ -11,6 +11,8 @@ setInterval(function(){
 window.h = 80;
 window.w = 40;
 window.fontsize = 4;
+window.backgroundCanvas = '#FFF'
+window.foregroundCanvas= '#000'
 
 document.getElementById('setSize').addEventListener('click', function(){
     var w = document.getElementById('wValue').value
@@ -47,11 +49,23 @@ document.getElementById('settingBtn').addEventListener('click',function(){
 document.getElementById('snapBtn').addEventListener('click',function(){
     var canvas = document.getElementById('snap');
     window.open(
-        canvas.toDataURL("image/jpg"),
+        canvas.toDataURL("image/jpeg"),
         '_blank' // <- This is what makes it open in a new window.
     );
+})
 
+$("#background").spectrum({
+    color:'#000',
+    move: function(color) {
+        window.backgroundCanvas = color.toHexString(); // #ff0000
+    }
+})
 
+$("#textcolor").spectrum({
+    color:'#FFF',
+    move: function(color) {
+        window.foregroundCanvas= color.toHexString(); // #ff0000
+    }
 })
 
 
@@ -107,7 +121,9 @@ function convert_ascii(){
     snapcanvas.height=window.row || window.h*15;
     var context = snapcanvas.getContext('2d');
     context.clearRect(0, 0, snapcanvas.width, snapcanvas.height);
-    context.fillStyle = "black";
+    context.fillStyle=window.backgroundCanvas;
+    context.fillRect(0,0,snapcanvas.width,snapcanvas.height);
+    context.fillStyle = window.foregroundCanvas;
     console.log(window.row)
     var fontsize = 2;
     context.font = "bold " + fontsize + "px monospace";
