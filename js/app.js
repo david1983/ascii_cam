@@ -47,11 +47,11 @@ document.getElementById('settingBtn').addEventListener('click',function(){
 })
 
 document.getElementById('snapBtn').addEventListener('click',function(){
+    var button = document.getElementById('snapBtn');
     var canvas = document.getElementById('snap');
-    window.open(
-        canvas.toDataURL("image/jpeg"),
-        '_blank' // <- This is what makes it open in a new window.
-    );
+    var dataURL = canvas.toDataURL("image/jpeg"),
+    button.href = dataURL
+    
 })
 
 $("#background").spectrum({
