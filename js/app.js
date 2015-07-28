@@ -50,7 +50,7 @@ document.getElementById('snapBtn').addEventListener('click',function(){
     var button = document.getElementById('snapBtn');
     var canvas = document.getElementById('snap');
     var dataURL = canvas.toDataURL('image/png');
-    button.setAttribute('href', dataURL) ;
+    button.href = dataURL;
     
 })
 
